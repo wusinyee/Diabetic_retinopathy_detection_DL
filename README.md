@@ -28,7 +28,7 @@ c) Model Variations:
    2. Transfer learning (ResNet50/VGG16)
    3. Attention-based model with class weighting
 
-## Structure
+## Structure (TBC)
 ```
 ├── data/
 │   ├── raw/           # Original dataset
@@ -46,15 +46,6 @@ c) Model Variations:
 └── results/
 ```
 
-## Requirements
-```
-python>=3.8
-torch>=1.9.0
-tensorflow>=2.6.0
-opencv-python>=4.5.3
-numpy>=1.19.5
-pandas>=1.3.0
-```
 
 ## Installation
 ```bash
