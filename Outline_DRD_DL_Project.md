@@ -295,12 +295,41 @@ class ROICalculator:
 ```
 
 
-## 7. Research Initiatives
-| Area | Description | Timeline |
-|------|-------------|----------|
-| Multi-modal Learning | Integration of OCT data | Q3 2025 |
-| Federated Learning | Privacy-preserving training | Q1 2025 |
-| AutoML Integration | Automated model optimization | Q4 2025 |
+## 7. Limitations
+
+| Limitation | Impact | Mitigation Strategy |
+|------------|--------|-------------------|
+| Model Generalization | Limited performance on rare DR variants | Expanding training dataset |
+| Processing Speed | 45s average processing time per image | Hardware optimization planned |
+| Data Requirements | Minimum 8MP image resolution needed | Development of enhancement algorithms |
+
+#### Clinical Limitations
+```python
+clinical_limitations = {
+    'scope': [
+        'Limited to DR detection only',
+        'No multi-disease screening',
+        'Binary classification only'
+    ],
+    'validation': [
+        'Limited real-world testing',
+        'Single-center validation',
+        'Specific demographic focus'
+    ],
+    'integration': [
+        'Limited EMR system compatibility',
+        'Manual workflow steps required',
+        'Single-vendor PACS integration'
+    ]
+}
+```
+
+#### Operational Limitations
+- Internet connectivity requirement
+- Specialized training needs
+- Limited offline capabilities
+- Resource-intensive deployment
+
 
 ## 8. Risk Management
 
