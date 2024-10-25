@@ -9,7 +9,7 @@
 4. [Clinical Integration](#4-clinical-integration)
 5. [Implementation](#5-implementation)
 6. [ROI Analysis](#6-roi-analysis)
-7. [Research Initiatives](#7-Research Initiatives)
+7. [Research Initiatives]([#7-Research Initiatives](https://github.com/wusinyee/Diabetic_retinopathy_detection_DL/blob/main/Outline_DRD_DL_Project.md#7-research-initiatives))
 8. [Risk Management](#8-risk-management)
 9. [Documentation](#9-documentation)
 10. [Appendices](#10-appendices)
