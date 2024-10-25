@@ -1,5 +1,5 @@
 # Medical Image Classification using Deep Learning
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Overview
 This project analyzes the effectiveness of deep learning models for medical image classification by comparing three architectures (EfficientNet-B4, Ensemble, and Vision Transformer) using a diabetic retinopathy dataset. Through detailed model comparison and performance analysis, we identify the most suitable architecture while considering technical limitations, ethical implications, and practical implementation challenges.
@@ -99,4 +99,5 @@ python src/evaluation/evaluate.py --model efficientnet
 5. Open Pull Request
 
 ## License
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
