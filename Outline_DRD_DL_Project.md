@@ -295,7 +295,7 @@ class ROICalculator:
 ```
 
 
-### 7. Research Initiatives
+## 7. Research Initiatives
 | Area | Description | Timeline |
 |------|-------------|----------|
 | Multi-modal Learning | Integration of OCT data | Q3 2025 |
@@ -568,7 +568,7 @@ system_architecture = {
 }
 ```
 
-# 11. Conclusion
+## 11. Conclusion
 
 
 ### Key Achievements
