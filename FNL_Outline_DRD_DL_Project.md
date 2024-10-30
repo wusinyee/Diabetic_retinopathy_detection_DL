@@ -130,7 +130,6 @@ The study focuses on:
 
 ## 3. Literature Review
 
-## 3. Literature Review
 
 ### 3.1 Traditional DR Detection Methods
 #### 3.1.1 Manual Screening
