@@ -1,18 +1,18 @@
 # Comprehensive Analysis of Deep Learning for Diabetic Retinopathy Detection
 
 ## Table of Contents
-1. [Executive Summary](#executive-summary)
-2. [Introduction](#introduction)
-3. [Literature Review](#literature-review)
-4. [Methodology](#methodology)
-5. [Implementation](#implementation)
-6. [Results and Analysis](#results-and-analysis)
-7. [Discussion](#discussion)
-8. [Future Work](#future-work)
-9. [Conclusion](#conclusion)
-10. [References](#references)
+1. [Executive Summary](#1-executive-summary)
+2. [Introduction](#2-introduction)
+3. [Literature Review](#3-literature-review)
+4. [Methodology](#4-methodology)
+5. [Implementation](#5-implementation)
+6. [Results and Analysis](#6-results-and-analysis)
+7. [Discussion](#7-discussion)
+8. [Future Work](#8-future-work)
+9. [Conclusion](#9-conclusion)
+10. [References](#10-references)
 
-## 1. Executive Summary (TBC)
+## 1. Executive Summary
 
 *This report presents a comprehensive analysis of implementing deep learning solutions for automated diabetic retinopathy (DR) detection. The project achieved 83.2% accuracy and a quadratic weighted kappa score of 0.79 using an EfficientNet-B4 architecture enhanced with attention mechanisms.*
 
