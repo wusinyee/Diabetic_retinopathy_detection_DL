@@ -1,4 +1,4 @@
-# Comprehensive Analysis of Deep Learning for Diabetic Retinopathy Detection
+# DeepDR: Automated Diabetic Retinopathy Grading Using Deep Learning
 
 ## Table of Contents
 1. [Executive Summary](#1-executive-summary)
