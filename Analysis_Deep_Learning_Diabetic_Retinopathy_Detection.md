@@ -207,10 +207,6 @@ The clinical impact analysis demonstrates substantial benefits in three key area
 
 These metrics underscore the significant positive impact of early detection and intervention in diabetic retinopathy management, both from healthcare and economic perspectives. The substantial reduction in vision loss cases and treatment costs demonstrates the clear value proposition of implementing automated screening systems.
 
-2. Healthcare System Benefits
-- Increased screening capacity
-- Reduced specialist workload
-- Improved resource allocation
 
 
 ## 2. Data Description and Analysis
