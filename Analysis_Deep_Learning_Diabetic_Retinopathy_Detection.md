@@ -76,22 +76,29 @@
 ### 1.1 Background
 Diabetic Retinopathy (DR) remains a leading cause of preventable blindness globally, affecting approximately 30% of diabetic patients. Early detection and accurate grading are crucial for effective treatment and management.
 
-```python
-class ProjectContext:
-    def __init__(self):
-        self.statistics = {
-            'global_impact': {
-                'affected_population': '103 million (2022)',
-                'annual_growth_rate': '8.2%',
-                'screening_coverage': '41% in developed nations'
-            },
-            'clinical_challenges': {
-                'manual_screening': 'Time-intensive, subjective',
-                'accessibility': 'Limited specialist availability',
-                'early_detection': 'Critical for treatment success'
-            }
-        }
-```
+**Project Context**
+
+**Global Impact**
+- Affected Population: 103 million (2022)
+- Annual Growth Rate: 8.2%
+- Screening Coverage: 41% in developed nations
+
+**Clinical Challenges**
+**Manual Screening**
+- Time-intensive process
+- Subjective interpretation
+- Requires specialized expertise
+
+**Accessibility Issues**
+- Limited specialist availability
+- Geographic barriers to care
+- Resource constraints in many regions
+
+**Early Detection**
+- Critical for treatment success
+- Current methods often delay diagnosis
+- Impacts treatment outcomes significantly
+
 
 ### 1.2 Problem Statement
 Current DR screening methods face significant challenges:
@@ -107,27 +114,55 @@ Current DR screening methods face significant challenges:
 
 
 ### 1.3 Project Objectives
-```python
-class ProjectObjectives:
-    def define_objectives(self):
-        return {
-            'technical_goals': {
-                'accuracy': 'Achieve >85% classification accuracy',
-                'efficiency': 'Process time <3 seconds per image',
-                'robustness': 'Consistent performance across image qualities'
-            },
-            'clinical_goals': {
-                'reliability': 'Match expert-level grading',
-                'accessibility': 'Enable widespread screening',
-                'integration': 'Seamless clinical workflow adoption'
-            },
-            'research_goals': {
-                'innovation': 'Novel architecture adaptations',
-                'validation': 'Comprehensive clinical testing',
-                'contribution': 'Reproducible methodology'
-            }
-        }
-```
+
+**Technical Goals**
+1. Accuracy
+   - Achieve greater than 85% classification accuracy
+   - Meet or exceed current clinical standards
+   - Ensure reliable diagnostic capabilities
+
+2. Efficiency
+   - Process time less than 3 seconds per image
+   - Enable real-time screening capabilities
+   - Optimize computational resource usage
+
+3. Robustness
+   - Maintain consistent performance across varying image qualities
+   - Handle diverse imaging conditions
+   - Ensure reliability across different devices
+
+**Clinical Goals**
+1. Reliability
+   - Match expert-level grading accuracy
+   - Provide consistent diagnostic support
+   - Minimize false positives/negatives
+
+2. Accessibility
+   - Enable widespread screening implementation
+   - Increase access to diagnostic services
+   - Support remote and underserved areas
+
+3. Integration
+   - Ensure seamless clinical workflow adoption
+   - Compatible with existing healthcare systems
+   - Minimal disruption to current practices
+
+**Research Goals**
+1. Innovation
+   - Develop novel architecture adaptations
+   - Advance current state-of-the-art
+   - Create scalable solutions
+
+2. Validation
+   - Conduct comprehensive clinical testing
+   - Verify performance across diverse populations
+   - Establish statistical significance
+
+3. Contribution
+   - Provide reproducible methodology
+   - Share findings with research community
+   - Enable further developments in the field
+
 
 ### 1.4 Clinical Significance
 The project addresses critical healthcare needs:
