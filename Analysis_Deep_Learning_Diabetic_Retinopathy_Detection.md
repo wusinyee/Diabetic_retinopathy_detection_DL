@@ -127,6 +127,8 @@ Our project addresses three critical healthcare challenges:
 
 ## 1.3 Project Objectives
 
+**Add a section later to visually present the key findings and relate them to the main objectives**
+
 Primary objectives align with key stakeholder needs:
 
 1. **Technical Goals**:
