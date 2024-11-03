@@ -1,3 +1,7 @@
+# DeepDR: Automated Diabetic Retinopathy Grading Using Deep Learning
+
+-------------------------------
+
 ## Table of Contents
 
 1. Executive Summary
@@ -71,4 +75,7 @@ Required Sections:
 4. Three model variations with selection rationale
 5. Key findings and insights
 6. Next steps and improvements
+
+---------------------------------
+
 
