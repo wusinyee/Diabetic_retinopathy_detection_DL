@@ -15,11 +15,9 @@
    - 2.4 Dataset Challenges
    - 2.5 Key Insights and Recommendations
 
-3. Literature Review
-   - 3.1 Traditional DR Detection Methods
-   - 3.2 Deep Learning in Medical Imaging
-   - 3.3 Current State-of-the-Art
-   - 3.4 Theoretical Framework
+3. Evolution and State-of-the-Art in DR Detection
+   - 3.1 Detection Methods Evolution (1960-2024)
+   - 3.2 Current State-of-the-Art
 
 4. Model Selection and Architecture
    - 4.1 Data-Driven Requirements
@@ -314,6 +312,8 @@ Implementation should focus on quality-based stratification in training/validati
 
 ## 3. Evolution and State-of-the-Art in Diabetic Retinopathy DR Detection
 
+The progression of diabetic retinopathy (DR) detection has evolved significantly, from traditional manual screening to advanced deep learning approaches, showing marked improvements in accuracy, efficiency, and scalability.
+
 ### 3.1 Detection Methods Evolution (1960-2024)
 
 ```python
@@ -342,7 +342,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-### 3.2 Current State-of-the-Art Performance
+### 3.2 Current State-of-the-Art 
+
 | Architecture | Year | Accuracy | Key Innovation |
 |--------------|------|----------|----------------|
 | EfficientNet | 2019 | 85-89%   | Compound scaling |
@@ -364,6 +365,7 @@ plt.show()
    - Sensitivity: 90-95%
    - Specificity: 91-96%
    - Processing time: 1-3 seconds/image
+
 
 ```python
 # Performance comparison visualization
