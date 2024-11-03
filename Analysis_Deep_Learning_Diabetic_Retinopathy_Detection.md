@@ -21,7 +21,7 @@
 - 2.4 Feature Engineering
 - 2.5 Data Challenges & Solutions
 
-## 3. Model Development
+## 3. Model Development [update this]
 - 3.1 Model Selection Strategy
 - 3.2 Deep Learning Architecture
 - 3.3 Training Approach
@@ -410,11 +410,19 @@ To address these quality variations, a comprehensive preprocessing pipeline is e
 Implementation should focus on quality-based stratification in training/validation splits, with continuous monitoring of quality-specific performance metrics. This approach ensures robust model development while maintaining transparency in performance reporting across different quality levels. Regular tracking and documentation of quality-related limitations will support ongoing optimization and provide clear performance expectations for different image quality scenarios.
 
 
-## 3. Evolution and State-of-the-Art in Diabetic Retinopathy DR Detection
+## 3. Model Developemnt
 
 The progression of diabetic retinopathy (DR) detection has evolved significantly, from traditional manual screening to advanced deep learning approaches, showing marked improvements in accuracy, efficiency, and scalability.
 
-### 3.1 Detection Methods Evolution (1960-2024)
+### 3.1 Model Selection Strategy
+
+Model Variations Selection Criteria
+- Clinical accuracy requirements
+- Resource constraints in medical settings
+- Real-world deployment considerations
+- Class imbalance in DR grading
+
+**Detection Methods Evolution (1960-2024)**
 
 ```python
 import matplotlib.pyplot as plt
@@ -503,58 +511,7 @@ plt.show()
 
 [Insert fig 4]
 
-### 3.2 Current State-of-the-Art 
 
-| Architecture | Year | Accuracy | Key Innovation |
-|--------------|------|----------|----------------|
-| EfficientNet | 2019 | 85-89%   | Compound scaling |
-| Vision Transformer | 2020 | 83-87% | Attention mechanisms |
-| ConvNeXt | 2022 | 86-90% | Modern CNN design |
-
-** Key Technical Advances**
-**Feature Learning**
-   - Automatic feature extraction
-   - Multi-scale processing
-   - Attention mechanisms
-
-**Clinical Benefits**
-   - Wider screening coverage
-   - Reduced variability
-   - Faster diagnosis
-
-**Performance Metrics**
-   - Sensitivity: 90-95%
-   - Specificity: 91-96%
-   - Processing time: 1-3 seconds/image
-
-
-```python
-# Performance comparison visualization
-methods = ['Manual', 'Classical CV', 'Modern DL']
-metrics = {
-    'Sensitivity': [82, 70, 92],
-    'Specificity': [85, 75, 93],
-    'Processing Speed': [30, 80, 95]  # Normalized scores
-}
-
-fig, ax = plt.subplots(figsize=(10, 6))
-x = np.arange(len(methods))
-width = 0.25
-multiplier = 0
-
-for metric, scores in metrics.items():
-    offset = width * multiplier
-    ax.bar(x + offset, scores, width, label=metric)
-    multiplier += 1
-
-ax.set_ylabel('Performance (%)')
-ax.set_title('Performance Comparison Across Methods')
-ax.set_xticks(x + width)
-ax.set_xticklabels(methods)
-ax.legend(loc='upper left')
-plt.tight_layout()
-plt.show()
-```
 
 [Insert fig 5]
 
@@ -562,11 +519,6 @@ plt.show()
 
 ## 4.1 Model Variations Selection and Architecture Design
 
-Model Variations Selection Criteria
-- Clinical accuracy requirements
-- Resource constraints in medical settings
-- Real-world deployment considerations
-- Class imbalance in DR grading
 
 Experimental Design Focus
 | Aspect | Purpose | Implementation |
