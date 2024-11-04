@@ -1,10 +1,10 @@
 # Deep Learning for Diabetic Retinopathy Detection
 
-This project evaluates deep learning approaches for automated diabetic retinopathy detection using the APTOS 2019 dataset (~3,500 retinal images with 5 severity levels), aiming to improve early diagnosis efficiency and accuracy in healthcare settings.
+This project evaluates deep learning approaches for automated diabetic retinopathy detection using the APTOS 2019 dataset (~3,500 retinal images with 5 severity levels), aiming to improve early diagnosis efficiency and accuracy in healthcare settings.**Brief summary of whiich 3 variations deep learning models i used, and list all the clustering techiques or other ml techiques i used)
 
 ---
 ## Table of Contents
-
+feature engineering and importance
 ## 1. Main Objectives and Analysis Goals 
 - Project Objectives
 - Deep Learning Approach Selection
