@@ -1,64 +1,79 @@
 # Deep Learning for Diabetic Retinopathy Detection
 
-This project evaluates deep learning approaches for automated diabetic retinopathy detection using the APTOS 2019 dataset (~3,500 retinal images with 5 severity levels), aiming to improve early diagnosis efficiency and accuracy in healthcare settings.**Brief summary of whiich 3 variations deep learning models i used, and list all the clustering techiques or other ml techiques i used)
+This project implements and evaluates three variations of the EfficientNet-B4 architecture for automated diabetic retinopathy (DR) detection using the APTOS 2019 dataset (3,662 retinal images, 5 severity levels). The variations include a baseline transfer learning model, an attention-enhanced model, and an ensemble approach with weighted voting. The analysis integrates UMAP dimensionality reduction, DBSCAN clustering, and PCA to validate model performance and provide clinical interpretability. The attention-enhanced model achieved 92.3% accuracy with 1.2s inference time, while the complementary machine learning techniques offered insights into feature importance, data quality, and disease progression patterns.
 
----
 ## Table of Contents
-feature engineering and importance
-## 1. Main Objectives and Analysis Goals 
+
+### 1. Main Objectives and Analysis Goals 
 - Project Objectives
 - Deep Learning Approach Selection
 - Business Impact
 
-## 2. Dataset Description and Analysis 
+### 2. Dataset Description and Analysis 
 - Dataset Overview
 - Exploratory Data Analysis
 - Analysis Process
 
-## 3. Data Preprocessing
+### 3. Feature Engineering and Analysis
+- Feature Extraction Methods
+- UMAP Dimensionality Reduction Results
+- DBSCAN Clustering Analysis
+- PCA Feature Importance
+- Feature Selection and Validation
+
+### 4. Data Preprocessing
 - Image Preprocessing Steps
 - Augmentation Techniques
 - Normalization Methods
+- Validation of Preprocessing Effects
 
-## 4. Deep Learning Model Development 
-### Model Variations
-- ResNet50 Implementation
-  - Hyperparameter Configuration
-  - Training Strategy
+### 5. Deep Learning Model Development and Training
+
+#### Model Variations
+- EfficientNet-B4 Baseline Implementation
+  - Transfer Learning Strategy
+  - Architecture Configuration
   - Performance Metrics
-- EfficientNet with Transfer Learning
-  - Architecture Modifications
-  - Fine-tuning Approach
+- EfficientNet-B4 with Attention
+  - Attention Mechanism Design
+  - Training Approach
   - Results Analysis
-- Custom CNN with Attention
-  - Network Design Choices
-  - Optimization Techniques
+- EfficientNet-B4 Ensemble
+  - Ensemble Strategy
+  - Weighted Voting Implementation
   - Validation Results
-### Model Selection Criteria
+#### Training Strategy
+- Transfer Learning Approach
+- Learning Rate Optimization
+- Loss Function Selection
+#### Hyperparameter Tuning
+
+#### Cross-Validation Results
+
+#### Model Selection Criteria
 - Accuracy Comparison
 - Computational Efficiency
 - Clinical Applicability
-### Final Model Justification
+#### Final Model Justification
 
-## 5. Key Findings and Insights 
+### 6. Key Findings and Insights 
 - Performance Analysis
-- Model Comparison
-- Implementation Insights
+- Model Variations Comparison
 - Clinical Validation Results
+- Summary of key Findings and Insights
 
-## 6. Limitations and Next Steps 
+### 7. Limitations and Next Steps 
 - Limitations
 - Data Gaps
 - Model Improvements
-- Next Steps
-- Implementation Plan
+- Next Step
 
-## Appendix
+### Appendix
 - Detailed Performance Metrics
 - Model Architecture Diagrams
 - Key Visualizations
 
-## Reference
+### References
 
 ---
 
