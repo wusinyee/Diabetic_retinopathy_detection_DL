@@ -8,13 +8,14 @@ This project evaluates deep learning approaches for automated diabetic retinopat
 ## 1. Main Objectives and Analysis Goals 
 - Project Objectives
 - Deep Learning Approach Selection
-- Expected Business Impact
+- Business Impact
 
 ## 2. Dataset Description and Analysis 
 - Dataset Overview
 - Exploratory Data Analysis
+- Analysis Process
 
-## 3. Data Preparation
+## 3. Data Preprocessing
 - Image Preprocessing Steps
 - Augmentation Techniques
 - Normalization Methods
@@ -46,16 +47,19 @@ This project evaluates deep learning approaches for automated diabetic retinopat
 - Clinical Validation Results
 
 ## 6. Limitations and Next Steps 
-- Current Limitations
+- Limitations
 - Data Gaps
 - Model Improvements
-- Future Enhancements
+- Next Steps
 - Implementation Plan
 
 ## Appendix
 - Detailed Performance Metrics
 - Model Architecture Diagrams
 - Key Visualizations
+
+## Reference
+
 ---
 
 ## 1. Main Objectives and Analysis Goals
@@ -218,117 +222,260 @@ In my analysis, I'm working with the APTOS 2019 Diabetic Retinopathy Detection d
   - Severe: 193 (5.27%)
   - Proliferative: 295 (8.06%)
 
+Summary of Attributes
+
+| Attribute | Description | Details |
+|-----------|-------------|----------|
+| **Image Count** | Total number of fundus photographs | 3,662 images |
+| **Image Resolution** | Original image dimensions | Range: 433x289 to 5184x3456 pixels |
+| **Color Space** | Color format of images | RGB (3 channels) |
+| **File Format** | Image storage format | JPEG compression |
+| **Labels** | DR severity grades | 5 classes (0-4) |
+| **Metadata** | Additional information | Patient age, camera type, image quality |
+
 ## Exploratory Data Analysis
 Through my exploratory analysis, I've identified several key characteristics and challenges:
 
 ```python
+import pandas as pd
+import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy as np
+import cv2
+from pathlib import Path
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 
-def create_dataset_analysis_dashboard():
-    fig = make_subplots(
-        rows=2, cols=2,
-        subplot_titles=('Class Distribution',
-                       'Image Quality Assessment',
-                       'Resolution Distribution',
-                       'Sample Quality Metrics'),
-        specs=[[{"type": "bar"}, {"type": "pie"}],
-               [{"type": "histogram"}, {"type": "bar"}]]
-    )
+class RetinalImageEDA:
+    def __init__(self, data_path, metadata_path):
+        """
+        Initialize EDA class with paths to image data and metadata
+        
+        Parameters:
+        data_path (str): Path to directory containing retinal images
+        metadata_path (str): Path to CSV file containing image metadata
+        """
+        self.data_path = Path(data_path)
+        self.metadata = pd.read_csv(metadata_path)
+        self.image_stats = None
+        
+    def calculate_image_statistics(self):
+        """Calculate basic statistics for all images in the dataset"""
+        stats = []
+        
+        for img_path in self.data_path.glob('*.jpeg'):
+            img = cv2.imread(str(img_path))
+            if img is not None:
+                stats.append({
+                    'image_id': img_path.stem,
+                    'height': img.shape[0],
+                    'width': img.shape[1],
+                    'mean_intensity': img.mean(),
+                    'std_intensity': img.std(),
+                    'size_kb': img_path.stat().st_size / 1024
+                })
+        
+        self.image_stats = pd.DataFrame(stats)
+        return self.image_stats
 
-    # 1. Class Distribution
-    classes = {
-        'No DR': 1805,
-        'Mild': 370,
-        'Moderate': 999,
-        'Severe': 193,
-        'Proliferative': 295
-    }
-    
-    fig.add_trace(
-        go.Bar(
-            x=list(classes.keys()),
-            y=list(classes.values()),
-            marker_color='#3498db',
-            text=[f'n={v}<br>({v/sum(classes.values())*100:.1f}%)' for v in classes.values()],
-            textposition='auto',
-            name='Class Distribution'
-        ),
-        row=1, col=1
-    )
+    def create_eda_dashboard(self):
+        """Create comprehensive EDA dashboard"""
+        fig = make_subplots(
+            rows=3, cols=2,
+            subplot_titles=(
+                'DR Grade Distribution',
+                'Image Quality Distribution',
+                'Resolution Distribution',
+                'Image Size Distribution',
+                'Feature Correlation Heatmap',
+                'Quality Metrics Distribution'
+            ),
+            specs=[
+                [{"type": "bar"}, {"type": "pie"}],
+                [{"type": "histogram"}, {"type": "histogram"}],
+                [{"type": "heatmap"}, {"type": "box"}]
+            ]
+        )
 
-    # 2. Image Quality Distribution
-    quality = {
-        'High Quality': 85.6,
-        'Medium Quality': 12.4,
-        'Low Quality': 2.0
-    }
-    
-    fig.add_trace(
-        go.Pie(
-            labels=list(quality.keys()),
-            values=list(quality.values()),
-            marker_colors=['#2ecc71', '#f1c40f', '#e74c3c'],
-            name='Image Quality'
-        ),
-        row=1, col=2
-    )
+        # 1. DR Grade Distribution
+        grade_dist = self.metadata['dr_grade'].value_counts().sort_index()
+        fig.add_trace(
+            go.Bar(
+                x=['No DR', 'Mild', 'Moderate', 'Severe', 'Proliferative'],
+                y=grade_dist.values,
+                text=[f'{v} ({v/len(self.metadata)*100:.1f}%)' for v in grade_dist.values],
+                textposition='auto',
+                marker_color='#3498db',
+                name='DR Grades'
+            ),
+            row=1, col=1
+        )
 
-    # 3. Resolution Distribution (simulated data)
-    np.random.seed(42)
-    resolutions = np.random.normal(2000, 500, 1000)
-    
-    fig.add_trace(
-        go.Histogram(
-            x=resolutions,
-            nbinsx=30,
-            marker_color='#3498db',
-            name='Resolution Distribution'
-        ),
-        row=2, col=1
-    )
+        # 2. Image Quality Distribution
+        quality_dist = self.metadata['image_quality'].value_counts()
+        fig.add_trace(
+            go.Pie(
+                labels=quality_dist.index,
+                values=quality_dist.values,
+                marker_colors=['#2ecc71', '#f1c40f', '#e74c3c'],
+                name='Image Quality'
+            ),
+            row=1, col=2
+        )
 
-    # 4. Quality Metrics
-    metrics = {
-        'Focus Score': 82.3,
-        'Illumination': 78.9,
-        'Field Definition': 94.2,
-        'Artifact-free': 91.7
-    }
-    
-    fig.add_trace(
-        go.Bar(
-            x=list(metrics.keys()),
-            y=list(metrics.values()),
-            marker_color='#2ecc71',
-            text=[f'{v:.1f}%' for v in metrics.values()],
-            textposition='auto',
-            name='Quality Metrics'
-        ),
-        row=2, col=2
-    )
+        # 3. Resolution Distribution
+        if self.image_stats is None:
+            self.calculate_image_statistics()
+            
+        fig.add_trace(
+            go.Histogram(
+                x=self.image_stats['width'],
+                name='Image Width',
+                marker_color='#3498db',
+                opacity=0.75
+            ),
+            row=2, col=1
+        )
 
-    # Update layout
-    fig.update_layout(
-        height=800,
-        showlegend=False,
-        title_text="My Dataset Analysis Overview",
-        template="plotly_white"
-    )
+        # 4. Image Size Distribution
+        fig.add_trace(
+            go.Histogram(
+                x=self.image_stats['size_kb'],
+                name='Image Size (KB)',
+                marker_color='#2ecc71',
+                opacity=0.75
+            ),
+            row=2, col=2
+        )
 
-    # Update axes labels
-    fig.update_xaxes(title_text="DR Grade", row=1, col=1)
-    fig.update_yaxes(title_text="Number of Images", row=1, col=1)
-    fig.update_xaxes(title_text="Resolution (pixels)", row=2, col=1)
-    fig.update_yaxes(title_text="Frequency", row=2, col=1)
-    fig.update_yaxes(title_text="Percentage (%)", row=2, col=2)
+        # 5. Feature Correlation Heatmap
+        correlation_features = ['dr_grade', 'image_quality', 'patient_age']
+        corr_matrix = self.metadata[correlation_features].corr()
+        
+        fig.add_trace(
+            go.Heatmap(
+                z=corr_matrix.values,
+                x=corr_matrix.index,
+                y=corr_matrix.columns,
+                colorscale='RdBu',
+                zmin=-1,
+                zmax=1
+            ),
+            row=3, col=1
+        )
 
-    return fig
+        # 6. Quality Metrics Distribution
+        fig.add_trace(
+            go.Box(
+                y=self.image_stats['mean_intensity'],
+                name='Mean Intensity',
+                marker_color='#3498db'
+            ),
+            row=3, col=2
+        )
 
-# Display dashboard
-dashboard = create_dataset_analysis_dashboard()
+        # Update layout
+        fig.update_layout(
+            height=1200,
+            width=1000,
+            showlegend=False,
+            title_text="Comprehensive EDA Dashboard",
+            template="plotly_white"
+        )
+
+        # Update axes labels
+        fig.update_xaxes(title_text="DR Grade", row=1, col=1)
+        fig.update_yaxes(title_text="Count", row=1, col=1)
+        
+        fig.update_xaxes(title_text="Image Width (pixels)", row=2, col=1)
+        fig.update_yaxes(title_text="Count", row=2, col=1)
+        
+        fig.update_xaxes(title_text="Image Size (KB)", row=2, col=2)
+        fig.update_yaxes(title_text="Count", row=2, col=2)
+        
+        fig.update_xaxes(title_text="Features", row=3, col=1)
+        fig.update_yaxes(title_text="Features", row=3, col=1)
+        
+        fig.update_xaxes(title_text="Quality Metric", row=3, col=2)
+        fig.update_yaxes(title_text="Value", row=3, col=2)
+
+        return fig
+
+    def generate_summary_statistics(self):
+        """Generate summary statistics for numerical features"""
+        if self.image_stats is None:
+            self.calculate_image_statistics()
+            
+        summary_stats = pd.DataFrame({
+            'Statistic': ['Count', 'Mean', 'Std', 'Min', '25%', '50%', '75%', 'Max'],
+            'Image Width': self.image_stats['width'].describe(),
+            'Image Height': self.image_stats['height'].describe(),
+            'Image Size (KB)': self.image_stats['size_kb'].describe(),
+            'Mean Intensity': self.image_stats['mean_intensity'].describe()
+        })
+        
+        return summary_stats
+
+    def analyze_class_distribution(self):
+        """Analyze and visualize class distribution"""
+        class_dist = self.metadata['dr_grade'].value_counts().sort_index()
+        
+        fig = go.Figure(data=[
+            go.Bar(
+                x=['No DR', 'Mild', 'Moderate', 'Severe', 'Proliferative'],
+                y=class_dist.values,
+                text=[f'{v} ({v/len(self.metadata)*100:.1f}%)' for v in class_dist.values],
+                textposition='auto',
+                marker_color='#3498db'
+            )
+        ])
+        
+        fig.update_layout(
+            title='DR Grade Distribution',
+            xaxis_title='DR Grade',
+            yaxis_title='Count',
+            template='plotly_white'
+        )
+        
+        return fig, class_dist
+
+    def analyze_image_quality(self):
+        """Analyze image quality metrics"""
+        if self.image_stats is None:
+            self.calculate_image_statistics()
+            
+        quality_metrics = pd.DataFrame({
+            'Metric': ['Contrast', 'Brightness', 'Sharpness'],
+            'Mean': [0.75, 0.82, 0.68],  # Example values
+            'Std': [0.15, 0.12, 0.22]
+        })
+        
+        return quality_metrics
+
+# Usage example:
+"""
+# Initialize EDA
+eda = RetinalImageEDA(
+    data_path='path/to/images',
+    metadata_path='path/to/metadata.csv'
+)
+
+# Generate dashboard
+dashboard = eda.create_eda_dashboard()
 dashboard.show()
+
+# Get summary statistics
+summary_stats = eda.generate_summary_statistics()
+print(summary_stats)
+
+# Analyze class distribution
+class_dist_fig, class_dist = eda.analyze_class_distribution()
+class_dist_fig.show()
+
+# Get quality metrics
+quality_metrics = eda.analyze_image_quality()
+print(quality_metrics)
 ```
 
 ## Key Dataset Insights
@@ -349,6 +496,59 @@ From my analysis, I've identified several critical aspects:
    - Resolution range: 433x289 to 5184x3456 pixels
    - RGB color fundus photographs
    - Various lighting conditions and artifacts present
+
+## Analysis Process
+
+```python
+from graphviz import Digraph
+
+def create_analysis_flowchart():
+    dot = Digraph(comment='Analysis Process Flowchart')
+    dot.attr(rankdir='TB')
+    
+    # Data Collection and Preparation
+    dot.node('A', 'Data Collection\n- 3,662 Images\n- 5 DR Grades')
+    dot.node('B', 'Quality Assessment\n- Resolution Check\n- Clarity Analysis')
+    
+    # Preprocessing Steps
+    dot.node('C', 'Data Preprocessing\n- Image Standardization\n- Quality Enhancement')
+    dot.node('D', 'Feature Extraction\n- Vessel Detection\n- Lesion Analysis')
+    
+    # Analysis Steps
+    dot.node('E', 'Statistical Analysis\n- Distribution Analysis\n- Correlation Study')
+    dot.node('F', 'Clinical Validation\n- Expert Review\n- Quality Metrics')
+    
+    # Insights Generation
+    dot.node('G', 'Results Synthesis\n- Pattern Recognition\n- Insight Generation')
+    
+    # Add edges
+    dot.edge('A', 'B')
+    dot.edge('B', 'C')
+    dot.edge('C', 'D')
+    dot.edge('D', 'E')
+    dot.edge('E', 'F')
+    dot.edge('F', 'G')
+    
+    return dot
+
+# flowchart = create_analysis_flowchart()
+# flowchart.render('analysis_process', view=True)
+```
+
+### Key Analysis Metrics
+
+| Category | Metric | Purpose |
+|----------|--------|----------|
+| **Quality** | Image clarity score | Assess preprocessing needs |
+| | Contrast ratio | Determine enhancement requirements |
+| | Noise level | Identify filtering needs |
+| **Clinical** | Vessel visibility | Evaluate diagnostic potential |
+| | Lesion detectability | Assess pathological features |
+| | Expert agreement | Validate ground truth |
+| **Technical** | Resolution adequacy | Determine scaling requirements |
+| | Color distribution | Guide normalization approach |
+| | Feature extraction quality | Inform model architecture |
+
 
 ---
 
