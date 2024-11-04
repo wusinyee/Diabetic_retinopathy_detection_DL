@@ -1,6 +1,6 @@
 # Deep Learning for Diabetic Retinopathy Detection
 
-This project implements and evaluates three variations of the EfficientNet-B4 architecture for automated diabetic retinopathy (DR) detection using the APTOS 2019 dataset (3,662 retinal images, 5 severity levels). The variations include a baseline transfer learning model, an attention-enhanced model, and an ensemble approach with weighted voting. The analysis integrates UMAP dimensionality reduction, DBSCAN clustering, and PCA to validate model performance and provide clinical interpretability. The attention-enhanced model achieved 92.3% accuracy with 1.2s inference time, while the complementary machine learning techniques offered insights into feature importance, data quality, and disease progression patterns.
+This project analyzes and evaluates three variations of the EfficientNet-B4 architecture for automated diabetic retinopathy (DR) detection using the APTOS 2019 dataset (3,662 retinal images, 5 severity levels). The variations include a baseline transfer learning model, an attention-enhanced model, and an ensemble approach with weighted voting. The analysis integrates UMAP dimensionality reduction, DBSCAN clustering, and PCA to validate model performance and provide clinical interpretability. The attention-enhanced model achieved 92.3% accuracy with 1.2s inference time, while the complementary machine learning techniques offered insights into feature importance, data quality, and disease progression patterns.
 
 ## Table of Contents
 
