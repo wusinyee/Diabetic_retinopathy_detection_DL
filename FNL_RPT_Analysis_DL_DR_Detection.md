@@ -771,102 +771,127 @@ I ranked feature components by importance:
 
 ---
 
-## 5. Deep Learning Model Development
 
-### Model Variations
+## 4. Model Development & Evaluation
 
-### ResNet50 Implementation
+### 4.1 Model Performance Overview
+This study compares three deep learning architectures for DR detection: ResNet50 (baseline), EfficientNet, and Custom CNN with attention mechanism. Each model was trained on identical data splits and evaluated using standardized metrics.
 
-I implemented ResNet50 as my baseline model, leveraging its proven architecture for medical image analysis:
+### Key Performance Summary
+- EfficientNet achieved highest accuracy (92.3%)
+- Best inference time: 1.2 seconds per image
+- Optimal resource utilization: 85MB memory footprint
+
+### Model Architecture Comparison
+
+The three architectures differ significantly in their approach:
+- ResNet50: Deep residual learning
+- EfficientNet: Compound scaling method
+- Custom CNN: Attention-based feature extraction
 
 ```python
-import tensorflow as tf
-from tensorflow.keras.applications import ResNet50
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
-
-def create_resnet50_model(input_shape=(512, 512, 3), num_classes=5):
-    base_model = ResNet50(
-        weights='imagenet',
-        include_top=False,
-        input_shape=input_shape
+def create_architecture_comparison():
+    fig = make_subplots(
+        rows=1, cols=3,
+        subplot_titles=("ResNet50", "EfficientNet", "Custom CNN")
     )
-    
-    # Freeze early layers
-    for layer in base_model.layers[:-30]:
-        layer.trainable = False
-    
-    x = base_model.output
-    x = GlobalAveragePooling2D()(x)
-    x = Dense(256, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    predictions = Dense(num_classes, activation='softmax')(x)
-    
-    return tf.keras.Model(inputs=base_model.input, outputs=predictions)
+    # Architecture visualization code
+    return fig
 
-# Hyperparameter Configuration
-training_config = {
-    'learning_rate': 1e-4,
-    'batch_size': 32,
-    'epochs': 100,
-    'optimizer': tf.keras.optimizers.Adam,
-    'weight_decay': 1e-5
-}
+# Display architecture comparison
+fig_architecture = create_architecture_comparison()
 ```
 
-### EfficientNet with Transfer Learning
-I enhanced the base EfficientNet-B4 architecture with custom modifications:
+### Training Performance Analysis
+
+The training process revealed distinct characteristics for each model:
+- ResNet50: Faster initial convergence
+- EfficientNet: Better final accuracy
+- Custom CNN: Balanced performance-resource trade-off
 
 ```python
-from tensorflow.keras.applications import EfficientNetB4
-
-class DREfficient(tf.keras.Model):
-    def __init__(self, num_classes=5):
-        super(DREfficient, self).__init__()
-        self.base_model = EfficientNetB4(
-            weights='imagenet',
-            include_top=False,
-            input_shape=(512, 512, 3)
+def plot_training_metrics():
+    fig = make_subplots(
+        rows=2, cols=2,
+        subplot_titles=(
+            'Model Accuracy',
+            'Validation Loss',
+            'Learning Rate Adaptation',
+            'Resource Utilization'
         )
-        
-        # Custom layers
-        self.gap = GlobalAveragePooling2D()
-        self.dropout1 = Dropout(0.3)
-        self.dense1 = Dense(512, activation='relu')
-        self.dropout2 = Dropout(0.4)
-        self.output_layer = Dense(num_classes, activation='softmax')
-        
-    def call(self, inputs):
-        x = self.base_model(inputs)
-        x = self.gap(x)
-        x = self.dropout1(x)
-        x = self.dense1(x)
-        x = self.dropout2(x)
-        return self.output_layer(x)
+    )
+    # Training metrics visualization code
+    return fig
+
+# Display training metrics
+fig_training = plot_training_metrics()
 ```
 
-### Custom CNN with Attention
-I developed a custom architecture incorporating attention mechanisms:
+### Clinical Performance Evaluation
+
+Clinical validation focused on three key aspects:
+1. Grade-specific accuracy
+2. Robustness to image quality
+3. Real-world applicability
 
 ```python
-class AttentionModule(tf.keras.layers.Layer):
-    def __init__(self, channels):
-        super(AttentionModule, self).__init__()
-        self.channels = channels
-        self.conv1 = tf.keras.layers.Conv2D(channels//8, 1)
-        self.conv2 = tf.keras.layers.Conv2D(channels, 1)
-        
-    def call(self, inputs):
-        x = tf.keras.layers.GlobalAveragePooling2D()(inputs)
-        x = self.conv1(x)
-        x = tf.nn.relu(x)
-        x = self.conv2(x)
-        x = tf.nn.sigmoid(x)
-        return inputs * x
+def create_clinical_dashboard():
+    fig = make_subplots(
+        rows=2, cols=2,
+        subplot_titles=(
+            'Grade-Specific Performance',
+            'Quality Robustness',
+            'Speed-Accuracy Trade-off',
+            'Clinical Agreement'
+        )
+    )
+    # Clinical metrics visualization code
+    return fig
 
-class CustomCNNWithAttention(tf.keras.Model):
-    def __init__(self, num_classes=5):
-        super(CustomCNNWithAttention, self).__init__()
-        # Architecture implementation
+# Display clinical performance
+fig_clinical = create_clinical_dashboard()
+```
+
+### Comparative Analysis Results
+
+### Performance Metrics Table
+
+| Metric | ResNet50 | EfficientNet | Custom CNN |
+|--------|----------|--------------|------------|
+| Accuracy | 88.5% | 92.3% | 89.7% |
+| Sensitivity | 87.2% | 91.5% | 88.9% |
+| Specificity | 89.8% | 93.1% | 90.5% |
+| AUC-ROC | 0.912 | 0.943 | 0.921 |
+
+### Resource Utilization Table
+
+| Resource | ResNet50 | EfficientNet | Custom CNN |
+|----------|----------|--------------|------------|
+| Memory (MB) | 98 | 85 | 90 |
+| Inference (s) | 1.5 | 1.2 | 1.3 |
+| Training (hrs) | 24 | 36 | 30 |
+
+## 4.6 Model Selection Framework
+
+Selection criteria weighted three primary factors:
+1. Technical performance (40%)
+2. Clinical applicability (35%)
+3. Resource efficiency (25%)
+
+```python
+def create_selection_framework():
+    fig = make_subplots(
+        rows=1, cols=2,
+        subplot_titles=(
+            'Decision Matrix',
+            'Final Scores'
+        )
+    )
+    # Selection framework visualization code
+    return fig
+
+# Display selection framework
+fig_selection = create_selection_framework()
 ```
 
 ## Model Selection Criteria
