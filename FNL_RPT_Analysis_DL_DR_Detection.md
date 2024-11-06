@@ -226,7 +226,7 @@ In my analysis, I'm working with the APTOS 2019 Diabetic Retinopathy Detection d
   - Severe: 193 (5.27%)
   - Proliferative: 295 (8.06%)
 
-![image](https://github.com/user-attachments/assets/9601c65f-7a47-42f1-adb8-d0768d00a4f5)
+
 
 
 Summary of Attributes
