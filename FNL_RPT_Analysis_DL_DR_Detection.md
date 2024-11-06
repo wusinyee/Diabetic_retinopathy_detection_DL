@@ -173,6 +173,14 @@ def create_impact_dashboard():
 dashboard = create_impact_dashboard()
 dashboard.show()
 ```
+## Performance Targets
+
+| Metric | Target | Clinical Requirement |
+|--------|--------|---------------------|
+| Accuracy | >90% | 85% |
+| Processing Time | <2s | 5s |
+| Clinical Agreement | >85% | 80% |
+| Resource Usage | <100MB | 200MB |
 
 ### Key Performance Indicators
 
