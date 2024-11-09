@@ -1,6 +1,4 @@
-Deep Learning and Reinforcement Learning Course Final Project
-Date: 2024-11-3
-Name: Sin Yee Wu
+## Deep Learning and Reinforcement Learning Course Final Project
 
 Executive Summary
 ----------------
@@ -24,7 +22,7 @@ Table of Contents
 8. References
 9. Appendices
 
-1. Introduction and Main Objectives
+## 1. Introduction and Main Objectives
 ---------------------------------
 1.1 Problem Statement
 --------------------
