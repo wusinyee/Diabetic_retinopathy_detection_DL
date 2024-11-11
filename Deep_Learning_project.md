@@ -203,26 +203,11 @@ Image Properties:
 
 2.4 Dataset Challenges and Solutions
 ----------------------------------
-1. Class Imbalance:
-   Challenge: Uneven distribution of severity grades
-   Solution: 
-   • Implemented weighted sampling
-   • Applied data augmentation
-   • Used stratified k-fold validation
-
-2. Quality Variations:
-   Challenge: Varying image quality and artifacts
-   Solution:
-   • Multi-stage preprocessing pipeline
-   • Quality-specific augmentation
-   • Robust normalization techniques
-
-3. Size Variations:
-   Challenge: Inconsistent image dimensions
-   Solution:
-   • Standardized resolution (224x224)
-   • Maintained aspect ratio
-   • Smart cropping for ROI
+| Challenge Category | Problem | Solutions |
+|-------------------|----------|-----------|
+| Class Imbalance | Uneven distribution of severity grades | • Implemented weighted sampling<br>• Applied data augmentation<br>• Used stratified k-fold validation |
+| Quality Variations | Varying image quality and artifacts | • Multi-stage preprocessing pipeline<br>• Quality-specific augmentation<br>• Robust normalization techniques |
+| Size Variations | Inconsistent image dimensions | • Standardized resolution (224x224)<br>• Maintained aspect ratio<br>• Smart cropping for ROI |
 
 2.5 Data Preprocessing Pipeline
 -----------------------------
@@ -236,17 +221,14 @@ Image Properties:
    • Intensity scaling
    • Channel normalization
 
-3. Augmentation Strategy:
-   |-------------------|------------------------|
-   | Technique         | Parameters            |
-   |-------------------|------------------------|
-   | Rotation         | ±30 degrees           |
-   | Horizontal Flip  | 50% probability       |
-   | Vertical Flip    | 50% probability       |
-   | Brightness       | ±20%                  |
-   | Contrast         | ±15%                  |
-   | Zoom            | ±10%                  |
-   |-------------------|------------------------|
+| Technique | Parameters |
+|-----------|------------|
+| Rotation | ±30 degrees |
+| Horizontal Flip | 50% probability |
+| Vertical Flip | 50% probability |
+| Brightness | ±20% |
+| Contrast | ±15% |
+| Zoom | ±10% |
 
 2.6 Dataset Validation Strategy
 -----------------------------
@@ -278,7 +260,6 @@ Image Properties:
 
 3.1 Exploratory Data Analysis
 ----------------------------
-[Visualization Code and Results]
 
 ```python
 import pandas as pd
